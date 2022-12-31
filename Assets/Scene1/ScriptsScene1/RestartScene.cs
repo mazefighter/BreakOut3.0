@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class RestartScene : MonoBehaviour
 {
-    [SerializeField] private Button _button;
+    private Button _button;
     void Start()
     {
         _button = GetComponent<Button>();

@@ -13,15 +13,36 @@ public class BallMove : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float force;
     private Vector2 speedcheck;
+    [SerializeField] private PauseMenu _pause;
+    private Vector2 currentVel;
 
     private void OnEnable()
     {
         _losiingCondition.LifeLost += LosiingConditionOnLifeLost;
+        _pause.Pause += PauseOnPause;
+        
     }
+    
 
     private void OnDisable()
     {
         _losiingCondition.LifeLost -= LosiingConditionOnLifeLost;
+        _pause.Pause -= PauseOnPause;
+    }
+
+    private void PauseOnPause(bool _switch)
+    {
+        if (_switch)
+        {
+            currentVel = _rigidbody.velocity;
+            _rigidbody.velocity = Vector2.zero;
+        }
+
+        if (!_switch)
+        {
+            _rigidbody.velocity = currentVel;
+        }
+        
     }
 
     private void LosiingConditionOnLifeLost()

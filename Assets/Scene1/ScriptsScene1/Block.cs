@@ -12,6 +12,10 @@ public class Block : MonoBehaviour
     [SerializeField] private Sprite[] _spriteArr;
     public delegate void PosAndColor(Vector3 pos, int health);
     public static event PosAndColor MoveParticle;
+
+    public delegate void GetHealth(int health);
+
+    public static event GetHealth HealthOnImpact;
     void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -38,6 +42,7 @@ public class Block : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         MoveParticle?.Invoke(transform.position,health);
+        HealthOnImpact?.Invoke(health);
         health--;
     }
 }

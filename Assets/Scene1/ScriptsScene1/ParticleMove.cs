@@ -7,6 +7,7 @@ public class ParticleMove : MonoBehaviour
 {
 
     private ParticleSystem _particleSystem;
+    
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -20,8 +21,6 @@ public class ParticleMove : MonoBehaviour
     }
     private void BlockOnMoveParticle(Vector3 pos, int health)
     {
-        print(pos);
-        print(health);
         var particleSystemMain = _particleSystem.main;
         transform.position = new Vector3(pos.x, pos.y, transform.position.z);
         switch (health)

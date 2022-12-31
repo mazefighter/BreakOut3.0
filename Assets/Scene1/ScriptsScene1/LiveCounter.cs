@@ -10,6 +10,8 @@ public class LiveCounter : MonoBehaviour
     private int lives = 3;
     [SerializeField] GameObject _panel;
     [SerializeField] private GameObject _ball;
+    [SerializeField] private TextMeshProUGUI score;
+    [SerializeField] private ScoreBoard _scoreBoard;
     private void OnEnable()
     {
         _losiingCondition.LifeLost += LosiingConditionOnLifeLost;
@@ -33,6 +35,8 @@ public class LiveCounter : MonoBehaviour
         else
         {
             _mesh.SetText(""+lives);
+            int currentscore =_scoreBoard.points / 2;
+            score.SetText(""+currentscore);
         }
         
         
