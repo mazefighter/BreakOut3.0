@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Block
   - Ball
+  - BackSound
   layers:
   - Default
   - TransparentFX

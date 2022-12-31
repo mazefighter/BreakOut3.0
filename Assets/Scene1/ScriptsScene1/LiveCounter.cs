@@ -12,11 +12,14 @@ public class LiveCounter : MonoBehaviour
     [SerializeField] private GameObject _ball;
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private ScoreBoard _scoreBoard;
+    private AudioSource _audio;
+    [SerializeField] private AudioSource _background;
     private void OnEnable()
     {
         _losiingCondition.LifeLost += LosiingConditionOnLifeLost;
         _mesh = GetComponent<TextMeshProUGUI>();
-        
+        _audio = GetComponent<AudioSource>();
+
     }
 
     private void OnDisable()
@@ -31,12 +34,14 @@ public class LiveCounter : MonoBehaviour
         {
            _panel.SetActive(true); 
            _ball.SetActive(false);
+           _background.Stop();
+           _audio.Play();
         }
         else
         {
             _mesh.SetText(""+lives);
-            int currentscore =_scoreBoard.points / 2;
-            score.SetText(""+currentscore);
+            _scoreBoard.points /=  2;
+            score.SetText(""+_scoreBoard.points);
         }
         
         

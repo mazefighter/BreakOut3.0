@@ -15,6 +15,7 @@ public class BrickSpawn : MonoBehaviour
     [SerializeField] private int BrickCountY;
     [SerializeField] private GameObject _brickParent;
     private Block _block;
+    [SerializeField] private WinningCondition _win;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class BrickSpawn : MonoBehaviour
             for (int j = 0; j <= BrickCountY; j++)
             {
                 GameObject game = Instantiate(_pref,new Vector3(BrickOriginPositionX + i * BrickSpaceX, BrickOriginPositionY + j * BrickSpaceY, 0f), Quaternion.identity);
+                _win._Blocks.Add(game);
                 _block = game.GetComponent<Block>();
                 _block.health = Random.Range(1, 2 + _block.NumberOfFortifiers);
                 game.transform.SetParent(_brickParent.transform);

@@ -16,6 +16,8 @@ public class Block : MonoBehaviour
     public delegate void GetHealth(int health);
 
     public static event GetHealth HealthOnImpact;
+    public static event Action BlockCollide;
+    
     void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -26,16 +28,19 @@ public class Block : MonoBehaviour
     void Update()
     {
         switch (health)
-        {
-            case 0:
-                gameObject.SetActive(false);
-                break;
-            case 1:
-                _spriteRenderer.sprite = _spriteArr[0];
-                break;
-            case 2:
-                _spriteRenderer.sprite = _spriteArr[1];
-                break;
+            {
+                case 0:
+                    
+                    gameObject.SetActive(false);
+                    BlockCollide?.Invoke();
+                    break;
+                case 1:
+                    _spriteRenderer.sprite = _spriteArr[0];
+                    break;
+                case 2:
+                    _spriteRenderer.sprite = _spriteArr[1];
+                    break;
+            
         }
     }
 

@@ -8,6 +8,7 @@ public class ScoreBoard : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _text;
     public int points ;
+    
     private void OnEnable()
     {
         Block.HealthOnImpact += BlockOnHealthOnImpact;

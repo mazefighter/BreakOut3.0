@@ -19,6 +19,9 @@ public class LosingCondition : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        LifeLost?.Invoke();
+        if (!col.gameObject.CompareTag("Player"))
+        {
+            LifeLost?.Invoke();
+        }
     }
 }
